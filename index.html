@@ -132,12 +132,7 @@
       color: #58a6ff;
       margin-bottom: 0.5rem;
     }
-    .projects a {
-      display: block;
-      margin-top: 0.5rem;
-      color: #58a6ff;
-      text-decoration: none;
-    }
+    /* Removido .projects a antigo pois a estrutura mudou */
     .soft-skills {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -174,7 +169,6 @@
     }
     #contato li {
       margin-bottom: 0.5rem;
-      
     }
     .contact-cards {
       display: grid;
@@ -206,8 +200,8 @@
       color: #58a6ff;
     }
     .contato-item {
-      word-break: break-all; 
-      overflow-wrap: break-word; 
+      word-break: break-all;  
+      overflow-wrap: break-word;  
     }
     #contato a {
     display: inline-block;
@@ -241,6 +235,49 @@
         transform: translateY(0px);
       }
     }
+
+    /* NOVOS ESTILOS PARA OS PROJETOS */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-card {
+      background-color: #161b22;
+      border-radius: 10px;
+      overflow: hidden; /* Garante que a imagem respeite o border-radius */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #58a6ff;
+    }
+
+    .project-card a {
+      text-decoration: none;
+      color: #ffffff; 
+      display: block; 
+    }
+
+    .project-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9; /* Proporção da miniatura */
+      object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
+      /* border-bottom: 1px solid #0d1117; Opcional: separador entre imagem e título */
+    }
+
+    .project-card h3 {
+      padding: 1rem;
+      margin: 0;
+      font-size: 1.1rem;
+      color: #58a6ff; /* Cor do título do projeto */
+    }
+    /* FIM DOS NOVOS ESTILOS PARA OS PROJETOS */
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
@@ -271,11 +308,8 @@
     </p>
     <img class="hero-img" src="./assets/imagem-perfil.png" alt="Foto de Matheus">
     <br>
-    <a href="./assets/Curriculo - Matheus Faria.pdf" class="btn-download">Baixar Currículo</a>
+    <a href="./assets/Curriculo - Matheus Faria.pdf" class="btn-download" target="_blank">Baixar Currículo</a>
   </header>
-</body>
-</html>
-
 
   <nav>
     <a href="#hard-skills">Hard Skills</a>
@@ -314,9 +348,20 @@
   <section id="projetos" class="projects" data-aos="fade-up">
     <h2>Meus Projetos</h2>
     <p>Aqui estão alguns dos meus projetos:</p>
-    <a href="https://for568.github.io/Mario-Jump/">Projeto 1 - Mario Jump</a>
-    <a href="https://for568.github.io/Desafio-CSS/">Projeto 2 - Desafio CSS</a>
-    <a href="#">Projeto 3 - Adicionar mais futuramente</a>
+    <div class="project-grid">
+      <div class="project-card">
+        <a href="https://for568.github.io/Mario-Jump/" target="_blank">
+          <img src="./assets/miniatura 2.png" alt="Miniatura do Projeto Mario Jump">
+          <h3>Mario Jump</h3>
+        </a>
+      </div>
+      <div class="project-card">
+        <a href="https://for568.github.io/Desafio-CSS/" target="_blank">
+          <img src="./assets/miniatura 1.png" alt="Miniatura do Projeto Desafio CSS">
+          <h3>Desafio CSS</h3>
+        </a>
+      </div>
+      </div>
   </section>
 
   <section id="contato" data-aos="fade-up">
@@ -330,7 +375,6 @@
         <a href="mailto:matheusfarias568@gmail.com">matheusfarias568@gmail.com</a>
       </div>
       
-  
       <div class="contact-card">
         <ion-icon name="call-outline" class="icon-float"></ion-icon>
         <h3>Telefone/WhatsApp</h3>
@@ -342,7 +386,7 @@
         <h3>LinkedIn</h3>
         <a href="https://www.linkedin.com/in/matheus-faria-73ba3b246/" target="_blank">Matheus Faria</a>
       </div>
-    
+      
       <div class="contact-card">
         <ion-icon name="logo-github" class="icon-float"></ion-icon>
         <h3>GitHub</h3>
@@ -350,7 +394,7 @@
       </div>
     </div>
   </section>
-    <br>
+  <br>
 
   <footer>
     <p>
