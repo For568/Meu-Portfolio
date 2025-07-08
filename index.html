@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portfólio | Matheus Faria</title>
+  <meta name="description" content="Portfólio de Matheus Faria, Desenvolvedor Front-End com habilidades em HTML, CSS, JavaScript, React, Python e mais.">
   <link rel="stylesheet" href="https://unpkg.com/ionicons@5.5.2/dist/css/ionicons.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -31,7 +32,7 @@
       color: #58a6ff;
       padding: 2rem 1rem;
       text-align: center;
-      position: relative;
+      position: relative; /* Necessário para posicionar o language-switcher */
     }
     header h1 span,
     header p span {
@@ -132,7 +133,6 @@
       color: #58a6ff;
       margin-bottom: 0.5rem;
     }
-    /* Removido .projects a antigo pois a estrutura mudou */
     .soft-skills {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -259,15 +259,14 @@
 
     .project-card a {
       text-decoration: none;
-      color: #ffffff; 
-      display: block; 
+      color: #ffffff;  
+      display: block;  
     }
 
     .project-card img {
       width: 100%;
       aspect-ratio: 16 / 9; /* Proporção da miniatura */
       object-fit: cover; /* Garante que a imagem cubra a área sem distorcer */
-      /* border-bottom: 1px solid #0d1117; Opcional: separador entre imagem e título */
     }
 
     .project-card h3 {
@@ -278,6 +277,38 @@
     }
     /* FIM DOS NOVOS ESTILOS PARA OS PROJETOS */
 
+    /* Estilos para o seletor de idioma */
+    .language-switcher {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        gap: 0.5rem;
+        z-index: 10; /* Para garantir que fique acima de outros elementos se houver sobreposição */
+    }
+
+    .language-switcher button {
+        background-color: #161b22;
+        color: #ffffff;
+        border: 1px solid #58a6ff;
+        padding: 0.5rem 0.8rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+        font-weight: bold;
+    }
+
+    .language-switcher button:hover {
+        background-color: #58a6ff;
+        color: #0d1117;
+    }
+
+    .language-switcher button.active {
+        background-color: #58a6ff;
+        color: #0d1117;
+        pointer-events: none; /* Desabilita clique no botão ativo */
+    }
+
     @media (max-width: 600px) {
       header h1 {
         font-size: 2rem;
@@ -286,110 +317,118 @@
         flex-direction: column;
         gap: 1rem;
       }
+      .language-switcher {
+        top: 0.5rem; /* Ajuste para telas menores */
+        right: 0.5rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
+    <div class="language-switcher">
+        <button id="lang-pt" class="active">PT</button>
+        <button id="lang-en">EN</button>
+    </div>
     <h1>
-      <span style="animation-delay: 0s">Olá,</span>
-      <span style="animation-delay: 0.2s">eu</span>
-      <span style="animation-delay: 0.4s">sou</span>
-      <span style="animation-delay: 0.6s">Matheus</span>
-      <span style="animation-delay: 0.8s">Faria</span>
+      <span data-key="greeting-part-1">Olá,</span>
+      <span data-key="greeting-part-2">eu</span>
+      <span data-key="greeting-part-3">sou</span>
+      <span data-key="greeting-part-4">Matheus</span>
+      <span data-key="greeting-part-5">Faria</span>
     </h1>
     <p>
-      <span style="animation-delay: 1s">Desenvolvedor</span>
-      <span style="animation-delay: 1.3s">Front-End</span>
-      <span style="animation-delay: 1.6s">|</span>
-      <span style="animation-delay: 1.9s">Criador</span>
-      <span style="animation-delay: 2.2s">de</span>
-      <span style="animation-delay: 2.5s">Soluções</span>
+      <span data-key="role-part-1">Desenvolvedor</span>
+      <span data-key="role-part-2">Front-End</span>
+      <span data-key="role-part-3">|</span>
+      <span data-key="role-part-4">Criador</span>
+      <span data-key="role-part-5">de</span>
+      <span data-key="role-part-6">Soluções</span>
     </p>
     <img class="hero-img" src="./assets/imagem-perfil.png" alt="Foto de Matheus">
     <br>
-    <a href="./assets/Curriculo - Matheus Faria.pdf" class="btn-download" target="_blank">Baixar Currículo</a>
+    <a href="./assets/Curriculo - Matheus Faria.pdf" class="btn-download" target="_blank" data-key="download_cv">Baixar Currículo</a>
   </header>
 
   <nav>
-    <a href="#hard-skills">Hard Skills</a>
-    <a href="#soft-skills">Soft Skills</a>
-    <a href="#projetos">Projetos</a>
-    <a href="#contato">Contato</a>
+    <a href="#hard-skills" data-key="nav_hard_skills">Hard Skills</a>
+    <a href="#soft-skills" data-key="nav_soft_skills">Soft Skills</a>
+    <a href="#projetos" data-key="nav_projects">Projetos</a>
+    <a href="#contato" data-key="nav_contact">Contato</a>
   </nav>
 
   <section id="hard-skills" data-aos="fade-up">
-    <h2>Hard Skills</h2>
+    <h2 data-key="hard_skills_title">Hard Skills</h2>
     <div class="skills">
-      <div class="skill"><ion-icon name="logo-html5"></ion-icon><p>HTML</p></div>
-      <div class="skill"><ion-icon name="logo-css3"></ion-icon><p>CSS</p></div>
-      <div class="skill"><ion-icon name="logo-javascript"></ion-icon><p>JavaScript</p></div>
-      <div class="skill"><ion-icon name="logo-python"></ion-icon><p>Python</p></div>
-      <div class="skill"><ion-icon name="logo-github"></ion-icon><p>GitHub</p></div>
-      <div class="skill"><ion-icon name="server-outline"></ion-icon><p>SQL</p></div>
-      <div class="skill"><ion-icon name="git-branch-outline"></ion-icon><p>Git</p></div>
+      <div class="skill"><ion-icon name="logo-html5"></ion-icon><p data-key="skill_html">HTML</p></div>
+      <div class="skill"><ion-icon name="logo-css3"></ion-icon><p data-key="skill_css">CSS</p></div>
+      <div class="skill"><ion-icon name="logo-javascript"></ion-icon><p data-key="skill_javascript">JavaScript</p></div>
+      <div class="skill"><ion-icon name="logo-react"></ion-icon><p data-key="skill_react">React</p></div> <div class="skill"><ion-icon name="logo-python"></ion-icon><p data-key="skill_python">Python</p></div>
+      <div class="skill"><ion-icon name="logo-github"></ion-icon><p data-key="skill_github">GitHub</p></div>
+      <div class="skill"><ion-icon name="server-outline"></ion-icon><p data-key="skill_sql">SQL</p></div>
+      <div class="skill"><ion-icon name="git-branch-outline"></ion-icon><p data-key="skill_git">Git</p></div>
     </div>
   </section>
 
   <section id="soft-skills" data-aos="fade-up">
-    <h2>Soft Skills</h2>
+    <h2 data-key="soft_skills_title">Soft Skills</h2>
     <div class="soft-skills">
-      <div class="soft-skill">Boa comunicação</div>
-      <div class="soft-skill">Trabalho em equipe</div>
-      <div class="soft-skill">Resolução de problemas</div>
-      <div class="soft-skill">Organização</div>
-      <div class="soft-skill">Aprendizado rápido</div>
-      <div class="soft-skill">Adaptabilidade</div>
-      <div class="soft-skill">Proatividade</div>
-      <div class="soft-skill">Gestão de tempo</div>
+      <div class="soft-skill" data-key="soft_skill_communication">Boa comunicação</div>
+      <div class="soft-skill" data-key="soft_skill_teamwork">Trabalho em equipe</div>
+      <div class="soft-skill" data-key="soft_skill_problem_solving">Resolução de problemas</div>
+      <div class="soft-skill" data-key="soft_skill_organization">Organização</div>
+      <div class="soft-skill" data-key="soft_skill_learning">Aprendizado rápido</div>
+      <div class="soft-skill" data-key="soft_skill_adaptability">Adaptabilidade</div>
+      <div class="soft-skill" data-key="soft_skill_proactivity">Proatividade</div>
+      <div class="soft-skill" data-key="soft_skill_time_management">Gestão de tempo</div>
     </div>
   </section>
 
   <section id="projetos" class="projects" data-aos="fade-up">
-    <h2>Meus Projetos</h2>
-    <p>Aqui estão alguns dos meus projetos:</p>
+    <h2 data-key="projects_title">Meus Projetos</h2>
+    <p data-key="projects_description">Aqui estão alguns dos meus projetos:</p>
     <div class="project-grid">
       <div class="project-card">
         <a href="https://for568.github.io/Mario-Jump/" target="_blank">
           <img src="./assets/miniatura 2.png" alt="Miniatura do Projeto Mario Jump">
-          <h3>Mario Jump</h3>
+          <h3 data-key="project_mario_jump">Mario Jump</h3>
         </a>
       </div>
       <div class="project-card">
         <a href="https://for568.github.io/Desafio-CSS/" target="_blank">
           <img src="./assets/miniatura 1.png" alt="Miniatura do Projeto Desafio CSS">
-          <h3>Desafio CSS</h3>
+          <h3 data-key="project_css_challenge">Desafio CSS</h3>
         </a>
       </div>
       </div>
   </section>
 
   <section id="contato" data-aos="fade-up">
-    <h2>Contato</h2>
-    <p>Vamos trabalhar juntos? Entre em contato por:</p>
+    <h2 data-key="contact_title">Contato</h2>
+    <p data-key="contact_description">Vamos trabalhar juntos? Entre em contato por:</p>
     
     <div class="contact-cards">
       <div class="contact-card">
         <ion-icon name="mail-outline" class="icon-float"></ion-icon>
-        <h3>Email</h3>
+        <h3 data-key="email_label">Email</h3>
         <a href="mailto:matheusfarias568@gmail.com">matheusfarias568@gmail.com</a>
       </div>
       
       <div class="contact-card">
         <ion-icon name="call-outline" class="icon-float"></ion-icon>
-        <h3>Telefone/WhatsApp</h3>
+        <h3 data-key="phone_whatsapp_label">Telefone/WhatsApp</h3>
         <a href="https://wa.me/5521981837315" target="_blank">(21) 98183-7315</a>
       </div>
       
       <div class="contact-card">
         <ion-icon name="logo-linkedin" class="icon-float"></ion-icon>
-        <h3>LinkedIn</h3>
+        <h3 data-key="linkedin_label">LinkedIn</h3>
         <a href="https://www.linkedin.com/in/matheus-faria-73ba3b246/" target="_blank">Matheus Faria</a>
       </div>
       
       <div class="contact-card">
         <ion-icon name="logo-github" class="icon-float"></ion-icon>
-        <h3>GitHub</h3>
+        <h3 data-key="github_label">GitHub</h3>
         <a href="https://github.com/For568" target="_blank">For568</a>
       </div>
     </div>
@@ -397,7 +436,7 @@
   <br>
 
   <footer>
-    <p>
+    <p data-key="copyright">
       &copy; 2025 Matheus Faria • Todos os direitos reservados.
       <a href="https://github.com/For568" target="_blank" style="color: #58a6ff;">GitHub</a>
     </p>
@@ -406,6 +445,107 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const langButtons = document.querySelectorAll('.language-switcher button');
+        // Pega o idioma do localStorage ou define como 'pt' se não houver
+        let currentLang = localStorage.getItem('lang') || 'pt';
+
+        const content = {
+            'pt': {
+                'greeting-part-1': 'Olá,', 'greeting-part-2': 'eu', 'greeting-part-3': 'sou', 'greeting-part-4': 'Matheus', 'greeting-part-5': 'Faria',
+                'role-part-1': 'Desenvolvedor', 'role-part-2': 'Front-End', 'role-part-3': '|', 'role-part-4': 'Criador', 'role-part-5': 'de', 'role-part-6': 'Soluções',
+                'download_cv': 'Baixar Currículo',
+                'nav_hard_skills': 'Hard Skills', 'nav_soft_skills': 'Soft Skills', 'nav_projects': 'Projetos', 'nav_contact': 'Contato',
+                'hard_skills_title': 'Hard Skills',
+                'skill_html': 'HTML', 'skill_css': 'CSS', 'skill_javascript': 'JavaScript', 'skill_python': 'Python', 'skill_github': 'GitHub', 'skill_sql': 'SQL', 'skill_git': 'Git', 'skill_react': 'React',
+                'soft_skills_title': 'Soft Skills',
+                'soft_skill_communication': 'Boa comunicação', 'soft_skill_teamwork': 'Trabalho em equipe', 'soft_skill_problem_solving': 'Resolução de problemas', 'soft_skill_organization': 'Organização', 'soft_skill_learning': 'Aprendizado rápido', 'soft_skill_adaptability': 'Adaptabilidade', 'soft_skill_proactivity': 'Proatividade', 'soft_skill_time_management': 'Gestão de tempo',
+                'projects_title': 'Meus Projetos',
+                'projects_description': 'Aqui estão alguns dos meus projetos:',
+                'project_mario_jump': 'Mario Jump',
+                'project_css_challenge': 'Desafio CSS',
+                'contact_title': 'Contato',
+                'contact_description': 'Vamos trabalhar juntos? Entre em contato por:',
+                'email_label': 'Email',
+                'phone_whatsapp_label': 'Telefone/WhatsApp',
+                'linkedin_label': 'LinkedIn',
+                'github_label': 'GitHub',
+                'copyright': '&copy; 2025 Matheus Faria • Todos os direitos reservados.'
+            },
+            'en': {
+                'greeting-part-1': 'Hello,', 'greeting-part-2': 'I', 'greeting-part-3': 'am', 'greeting-part-4': 'Matheus', 'greeting-part-5': 'Faria',
+                'role-part-1': 'Front-End', 'role-part-2': 'Developer', 'role-part-3': '|', 'role-part-4': 'Solution', 'role-part-5': '', 'role-part-6': 'Creator',
+                'download_cv': 'Download CV',
+                'nav_hard_skills': 'Hard Skills', 'nav_soft_skills': 'Soft Skills', 'nav_projects': 'Projects', 'nav_contact': 'Contact',
+                'hard_skills_title': 'Hard Skills',
+                'skill_html': 'HTML', 'skill_css': 'CSS', 'skill_javascript': 'JavaScript', 'skill_python': 'Python', 'skill_github': 'GitHub', 'skill_sql': 'SQL', 'skill_git': 'Git', 'skill_react': 'React',
+                'soft_skills_title': 'Soft Skills',
+                'soft_skill_communication': 'Good Communication', 'soft_skill_teamwork': 'Teamwork', 'soft_skill_problem_solving': 'Problem Solving', 'soft_skill_organization': 'Organization', 'soft_skill_learning': 'Quick Learner', 'soft_skill_adaptability': 'Adaptability', 'soft_skill_proactivity': 'Proactivity', 'soft_skill_time_management': 'Time Management',
+                'projects_title': 'My Projects',
+                'projects_description': 'Here are some of my projects:',
+                'project_mario_jump': 'Mario Jump',
+                'project_css_challenge': 'CSS Challenge',
+                'contact_title': 'Contact',
+                'contact_description': 'Let\'s work together? Contact me via:',
+                'email_label': 'Email',
+                'phone_whatsapp_label': 'Phone/WhatsApp',
+                'linkedin_label': 'LinkedIn',
+                'github_label': 'GitHub',
+                'copyright': '&copy; 2025 Matheus Faria • All rights reserved.'
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (content[lang][key] !== undefined) { // Garante que a chave existe
+                    if (element.tagName === 'SPAN' && (element.parentElement.tagName === 'H1' || (element.parentElement.tagName === 'P' && element.parentElement.parentElement.tagName === 'HEADER'))) {
+                        // Trata os spans do título e subtítulo para manter a animação
+                        element.textContent = content[lang][key];
+                    } else if (element.tagName === 'A' && element.classList.contains('btn-download')) {
+                        // Atualiza o texto do botão de download
+                        element.textContent = content[lang][key];
+                    } else if (element.tagName === 'P' && element.parentElement.tagName === 'FOOTER') {
+                        // Atualiza o texto do parágrafo do footer, mantendo o link
+                        const githubLink = element.querySelector('a');
+                        element.innerHTML = content[lang][key] + ' '; // Adiciona o texto base
+                        if (githubLink) {
+                            element.appendChild(githubLink); // Recoloca o link
+                        }
+                    } else {
+                        element.textContent = content[lang][key];
+                    }
+                }
+            });
+
+            // Atualizar links de navegação
+            document.querySelector('nav a[href="#hard-skills"]').textContent = content[lang]['nav_hard_skills'];
+            document.querySelector('nav a[href="#soft-skills"]').textContent = content[lang]['nav_soft_skills'];
+            document.querySelector('nav a[href="#projetos"]').textContent = content[lang]['nav_projects'];
+            document.querySelector('nav a[href="#contato"]').textContent = content[lang]['nav_contact'];
+
+            // Atualizar os botões de idioma
+            langButtons.forEach(button => {
+                if (button.id === `lang-${lang}`) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+            localStorage.setItem('lang', lang); // Salva a preferência
+            currentLang = lang;
+        }
+
+        langButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                setLanguage(event.target.id.replace('lang-', ''));
+            });
+        });
+
+        // Define o idioma inicial ao carregar a página
+        setLanguage(currentLang);
+    });
   </script>
   
 </body>
