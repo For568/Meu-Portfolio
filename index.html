@@ -236,7 +236,7 @@
       }
     }
 
-    /* NOVOS ESTILOS PARA OS PROJETOS */
+    
     .project-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -275,9 +275,8 @@
       font-size: 1.1rem;
       color: #58a6ff; /* Cor do título do projeto */
     }
-    /* FIM DOS NOVOS ESTILOS PARA OS PROJETOS */
+    
 
-    /* Estilos para o seletor de idioma */
     .language-switcher {
         position: absolute;
         top: 1rem;
@@ -306,7 +305,7 @@
     .language-switcher button.active {
         background-color: #58a6ff;
         color: #0d1117;
-        pointer-events: none; /* Desabilita clique no botão ativo */
+        pointer-events: none;
     }
 
     @media (max-width: 600px) {
@@ -448,7 +447,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         const langButtons = document.querySelectorAll('.language-switcher button');
-        // Pega o idioma do localStorage ou define como 'pt' se não houver
+        
         let currentLang = localStorage.getItem('lang') || 'pt';
 
         const content = {
@@ -499,19 +498,19 @@
         function setLanguage(lang) {
             document.querySelectorAll('[data-key]').forEach(element => {
                 const key = element.getAttribute('data-key');
-                if (content[lang][key] !== undefined) { // Garante que a chave existe
+                if (content[lang][key] !== undefined) { 
                     if (element.tagName === 'SPAN' && (element.parentElement.tagName === 'H1' || (element.parentElement.tagName === 'P' && element.parentElement.parentElement.tagName === 'HEADER'))) {
-                        // Trata os spans do título e subtítulo para manter a animação
+                        
                         element.textContent = content[lang][key];
                     } else if (element.tagName === 'A' && element.classList.contains('btn-download')) {
-                        // Atualiza o texto do botão de download
+                        
                         element.textContent = content[lang][key];
                     } else if (element.tagName === 'P' && element.parentElement.tagName === 'FOOTER') {
-                        // Atualiza o texto do parágrafo do footer, mantendo o link
+                    
                         const githubLink = element.querySelector('a');
-                        element.innerHTML = content[lang][key] + ' '; // Adiciona o texto base
+                        element.innerHTML = content[lang][key] + ' '; 
                         if (githubLink) {
-                            element.appendChild(githubLink); // Recoloca o link
+                            element.appendChild(githubLink); 
                         }
                     } else {
                         element.textContent = content[lang][key];
@@ -519,13 +518,13 @@
                 }
             });
 
-            // Atualizar links de navegação
+            
             document.querySelector('nav a[href="#hard-skills"]').textContent = content[lang]['nav_hard_skills'];
             document.querySelector('nav a[href="#soft-skills"]').textContent = content[lang]['nav_soft_skills'];
             document.querySelector('nav a[href="#projetos"]').textContent = content[lang]['nav_projects'];
             document.querySelector('nav a[href="#contato"]').textContent = content[lang]['nav_contact'];
 
-            // Atualizar os botões de idioma
+            
             langButtons.forEach(button => {
                 if (button.id === `lang-${lang}`) {
                     button.classList.add('active');
@@ -533,7 +532,7 @@
                     button.classList.remove('active');
                 }
             });
-            localStorage.setItem('lang', lang); // Salva a preferência
+            localStorage.setItem('lang', lang); 
             currentLang = lang;
         }
 
@@ -543,7 +542,7 @@
             });
         });
 
-        // Define o idioma inicial ao carregar a página
+        
         setLanguage(currentLang);
     });
   </script>
